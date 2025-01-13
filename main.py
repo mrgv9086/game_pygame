@@ -1,10 +1,7 @@
 import pygame
-import sys
 
 from config import *
-from screens.SceneHub import SceneHub
-
-sys.setrecursionlimit(1000)
+from scenes.SceneHub import SceneHub
 
 pygame.init()
 pygame.mixer.init()
@@ -15,7 +12,7 @@ clock.tick(FPS)
 
 pygame.display.init()
 
-fon = pygame.mixer.Sound('music/fon.mp3')
+fon = pygame.mixer.Sound('assets/music/fon.mp3')
 
 fon.set_volume(0.05)
 
@@ -33,8 +30,6 @@ while run:
             run = False
 
         scene_hub.current_scene.event_handler(event)
-        # elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-        #     sprite_hub.player.shoot(event.pos)
 
     scene_hub.current_scene.draw()
     scene_hub.current_scene.update()
