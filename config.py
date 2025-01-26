@@ -1,12 +1,16 @@
 import os
 
-# Настройка папки игры
-game_folder = os.path.dirname(__file__)
-img_folder = os.path.join(game_folder, 'assets/img')
+class Config:
 
-# Настройки окна
-X_SCREEN = 1080
-Y_SCREEN = 720
-CAPTION = "I love cats!!!"
+    current_gun = "pistol"
 
-FPS = 60
+    # Настройка папки игры
+    game_folder = os.path.dirname(__file__)
+    img_folder = os.path.join(game_folder, 'assets/img')
+
+    # Настройки окна
+    X_SCREEN = 1080
+    Y_SCREEN = 720
+    CAPTION = "I love cats!!!"
+
+    FPS = 60

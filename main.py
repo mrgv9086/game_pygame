@@ -1,14 +1,14 @@
 import pygame
 
-from config import *
+from config import Config
 from scenes.SceneHub import SceneHub
 
 pygame.init()
 pygame.mixer.init()
-screen = pygame.display.set_mode((X_SCREEN, Y_SCREEN))
-pygame.display.set_caption(CAPTION)
+screen = pygame.display.set_mode((Config.X_SCREEN, Config.Y_SCREEN))
+pygame.display.set_caption(Config.CAPTION)
 clock = pygame.time.Clock()
-clock.tick(FPS)
+clock.tick(Config.FPS)
 
 pygame.display.init()
 
@@ -24,7 +24,7 @@ scene_hub.current_scene = "MainMenuScreen"
 # main
 run = True
 while run:
-    clock.tick(FPS)
+    clock.tick(Config.FPS)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False

@@ -2,11 +2,11 @@ import pygame
 import random
 
 from assets.assets import BUTTON_GRAY
-from config import Y_SCREEN, X_SCREEN
+from config import Config
 
 TILE_SIZE = 30  # Размер одного тайла
-GRID_WIDTH = X_SCREEN * 4 // TILE_SIZE  # Ширина сетки в тайлах
-GRID_HEIGHT = Y_SCREEN * 4 // TILE_SIZE  # Высота сетки в тайлах
+GRID_WIDTH = Config.X_SCREEN * 4 // TILE_SIZE  # Ширина сетки в тайлах
+GRID_HEIGHT = Config.Y_SCREEN * 4 // TILE_SIZE  # Высота сетки в тайлах
 
 
 class Wall(pygame.sprite.Sprite):

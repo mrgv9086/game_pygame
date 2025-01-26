@@ -1,9 +1,9 @@
 import os
-from config import img_folder
+from config import Config
 
 # Настройки картинок
-PLAYER_LEFT_IMG = os.path.join(img_folder, 'player_left.png')
-PLAYER_RIGHT_IMG = os.path.join(img_folder, 'player_right.png')
+PLAYER_LEFT_IMG = os.path.join(Config.img_folder, 'player_left.png')
+PLAYER_RIGHT_IMG = os.path.join(Config.img_folder, 'player_right.png')
 
 # Настройки цветов
 BLACK = (0, 0, 0)

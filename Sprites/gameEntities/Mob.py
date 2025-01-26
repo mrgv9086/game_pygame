@@ -1,7 +1,7 @@
 import pygame
 import random
 from assets.assets import MOBCOLOR, BLACK, WHITE, BLUE_MOBCOLOR, BOSS_COLOR
-from config import Y_SCREEN
+from config import Config
 
 
 class Mob(pygame.sprite.Sprite):
@@ -21,12 +21,12 @@ class Mob(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         # ИЗМЕНЕНИЕ 1: Генерация начальной позиции так, чтобы моб не появлялся внутри стены
-        self.rect.x = random.randrange(Y_SCREEN - self.rect.width)
+        self.rect.x = random.randrange(Config.Y_SCREEN - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
 
         # Дополнительная проверка и коррекция позиции, чтобы не появлялся в стене
         while pygame.sprite.spritecollideany(self, self.hub.walls):
-            self.rect.x = random.randrange(Y_SCREEN - self.rect.width)
+            self.rect.x = random.randrange(Config.Y_SCREEN - self.rect.width)
             self.rect.y = random.randrange(-100, -40)
 
         self.speed = random.randrange(1, 2)
@@ -167,7 +167,7 @@ class Boss(pygame.sprite.Sprite):
         self.image = pygame.Surface((60, 80))  # Увеличенный размер
         self.image.fill(BOSS_COLOR)
         self.rect = self.image.get_rect()
-        self.rect.x = Y_SCREEN // 2 - self.rect.width // 2  # По центру по горизонтали
+        self.rect.x = Config.Y_SCREEN // 2 - self.rect.width // 2  # По центру по горизонтали
         self.rect.y = -100  # Сверху экрана
         self.speed = 1  # Медленнее, чем обычные враги
         self.damage = 2  # Наносит больше урона
@@ -175,7 +175,7 @@ class Boss(pygame.sprite.Sprite):
         # ИЗМЕНЕНИЕ 2: Генерация начальной позиции так, чтобы моб не появлялся внутри стены
         # Дополнительная проверка и коррекция позиции, чтобы не появлялся в стене
         while pygame.sprite.spritecollideany(self, self.hub.walls):
-            self.rect.x = random.randrange(Y_SCREEN - self.rect.width)
+            self.rect.x = random.randrange(Config.Y_SCREEN - self.rect.width)
             self.rect.y = random.randrange(-100, -40)
 
         # Добавим переменную для "плавного" движения

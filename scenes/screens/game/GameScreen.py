@@ -6,12 +6,12 @@ from Sprites.viewEntities.Button import Button
 from scenes.screens.game.Updater import Updater
 from Sprites.gameEntities.Wall import generate_walls  # Импортируем функцию генерации стен
 from assets.assets import BUTTON_GRAY, GREEN, BACKGROUND_GRAY
-from config import X_SCREEN, Y_SCREEN
+from config import Config
 from DataBase import add_time  # Импортируем функцию добавления времени
 
 class GameScreen:
     def __init__(self, screen, scene_hub):
-        self.settings_button = Button(X_SCREEN // 2 - 540, Y_SCREEN // 2 - 370, 50, 50, "☻", BUTTON_GRAY, GREEN)
+        self.settings_button = Button(Config.X_SCREEN // 2 - 540, Config.Y_SCREEN // 2 - 370, 50, 50, "☻", BUTTON_GRAY, GREEN)
         self.sprite_hub = SpriteHub()
 
         walls = generate_walls()  # функция генерации стен

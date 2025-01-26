@@ -1,7 +1,7 @@
 import pygame
 
 from Sprites.viewEntities.Button import Button
-from config import X_SCREEN, Y_SCREEN
+from config import Config
 from assets.assets import GREEN, BUTTON_GRAY, BACKGROUND_GRAY
 
 
@@ -9,11 +9,11 @@ class MainMenuScreen:
 
     def __init__(self, screen, scene_hub):
         # Создание кнопок
-        self.play_button = Button(X_SCREEN // 2 - 150, Y_SCREEN // 2 - 150, 300, 50, "Start", BUTTON_GRAY, GREEN)
-        self.settings_button = Button(X_SCREEN // 2 - 150, Y_SCREEN // 2 - 50, 300, 50, "Настройки", BUTTON_GRAY, GREEN)
-        self.character_button = Button(X_SCREEN // 2 - 150, Y_SCREEN // 2 + 50, 300, 50, "Персонаж", BUTTON_GRAY, GREEN)
-        self.weapon_button = Button(X_SCREEN // 2 - 150, Y_SCREEN // 2 + 150, 300, 50, "Оружие", BUTTON_GRAY, GREEN)
-        self.exit_button = Button(X_SCREEN // 2 - 150, Y_SCREEN // 2 + 250, 300, 50, "Выход", BUTTON_GRAY, GREEN)
+        self.play_button = Button(Config.X_SCREEN // 2 - 150, Config.Y_SCREEN // 2 - 150, 300, 50, "Start", BUTTON_GRAY, GREEN)
+        self.settings_button = Button(Config.X_SCREEN // 2 - 150, Config.Y_SCREEN // 2 - 50, 300, 50, "Настройки", BUTTON_GRAY, GREEN)
+        self.character_button = Button(Config.X_SCREEN // 2 - 150, Config.Y_SCREEN // 2 + 50, 300, 50, "Персонаж", BUTTON_GRAY, GREEN)
+        self.weapon_button = Button(Config.X_SCREEN // 2 - 150, Config.Y_SCREEN // 2 + 150, 300, 50, "Оружие", BUTTON_GRAY, GREEN)
+        self.exit_button = Button(Config.X_SCREEN // 2 - 150, Config.Y_SCREEN // 2 + 250, 300, 50, "Выход", BUTTON_GRAY, GREEN)
         self.screen = screen
         self.scene_hub = scene_hub
 

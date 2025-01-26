@@ -2,9 +2,9 @@ import pygame as pg
 
 
 class Checkbox:
-    def __init__(self, surface, x, y, color=(230, 230, 230), caption="", outline_color=(0, 0, 0),
+    def __init__(self, width, height, x, y, color=(230, 230, 230), caption="", outline_color=(0, 0, 0),
                  check_color=(0, 0, 0), font_size=22, font_color=(0, 0, 0), text_offset=(28, 1)):
-        self.surface = surface
+        self.surface = pg.Surface((width, height))
         self.x = x
         self.y = y
         self.color = color
@@ -63,14 +63,15 @@ class Checkbox:
                     self.unchecked = True
                 self.active = False
 
-    def update_checkbox(self, event_object):
-        if event_object.type == pg.MOUSEBUTTONDOWN:
-            self.click = True
-            # self._mouse_down()
-        if event_object.type == pg.MOUSEBUTTONUP:
-            self._mouse_up()
-        if event_object.type == pg.MOUSEMOTION:
-            self._update(event_object)
+    def update_checkbox(self):
+        for event_object in pg.event.get():
+            if event_object.type == pg.MOUSEBUTTONDOWN:
+                self.click = True
+                # self._mouse_down()
+            if event_object.type == pg.MOUSEBUTTONUP:
+                self._mouse_up()
+            if event_object.type == pg.MOUSEMOTION:
+                self._update(event_object)
 
     def is_checked(self):
         if self.checked is True:
@@ -83,3 +84,6 @@ class Checkbox:
             return True
         else:
             return False
+
+    def draw(self, screen):
+        screen.blit(self.surface, self.checkbox_obj)
