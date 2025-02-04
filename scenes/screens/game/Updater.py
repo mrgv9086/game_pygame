@@ -59,9 +59,16 @@ class Updater:
         if not self.game_over_flag:
             self.hub.all_sprites.update()
             if self.hub.player.update():
-                for sprite in self.hub.all_sprites:
-                    sprite.rect.x += self.offset_speed_x
-                    sprite.rect.y += self.offset_speed_y
+                if self.hub.player.update():
+                    for sprite in self.hub.walls:
+                        sprite.rect.x += self.offset_speed_x
+                        sprite.rect.y += self.offset_speed_y
+                    for sprite in self.hub.mobs:
+                        sprite.rect.x += self.offset_speed_x
+                        sprite.rect.y += self.offset_speed_y
+                    for sprite in self.hub.bullets:
+                        sprite.pos_x += self.offset_speed_x
+                        sprite.pos_y += self.offset_speed_y
 
             self.offset_speed_x = 0
             self.offset_speed_y = 0
