@@ -18,6 +18,8 @@ class Updater:
         self.start_game_time = datetime.now()
         self.game_over_flag = False
         self.font = pygame.font.Font(None, 36)
+        self.n = 0
+        self.schetcik = 0
 
         self.offset_speed_x = 0
         self.offset_speed_y = 0
@@ -58,18 +60,16 @@ class Updater:
         now = datetime.now()
         if not self.game_over_flag:
             self.hub.all_sprites.update()
-            if self.hub.player.update():
-                if self.hub.player.update():
-                    for sprite in self.hub.walls:
-                        sprite.rect.x += self.offset_speed_x
-                        sprite.rect.y += self.offset_speed_y
-                    for sprite in self.hub.mobs:
-                        sprite.rect.x += self.offset_speed_x
-                        sprite.rect.y += self.offset_speed_y
-                    for sprite in self.hub.bullets:
-                        sprite.pos_x += self.offset_speed_x
-                        sprite.pos_y += self.offset_speed_y
-
+            if not self.hub.player.update():
+                for sprite in self.hub.walls:
+                    sprite.rect.x += self.offset_speed_x
+                    sprite.rect.y += self.offset_speed_y
+                for sprite in self.hub.mobs:
+                    sprite.rect.x += self.offset_speed_x
+                    sprite.rect.y += self.offset_speed_y
+                for sprite in self.hub.bullets:
+                    sprite.pos_x += self.offset_speed_x
+                    sprite.pos_y += self.offset_speed_y
             self.offset_speed_x = 0
             self.offset_speed_y = 0
 
@@ -78,11 +78,22 @@ class Updater:
             # Проверяем на hp
             if self.hub.player.hp <= 0:
                 return "Loose"
-            if now - self.last_mob_create_time >= timedelta(seconds=3): #mob time
-                for i in range(random.randint(10, 20)):
-                    m = Mob(self.hub)
-                    self.hub.add_mob(m)
-                self.last_mob_create_time = datetime.now()
+            if len(self.hub.mobs) <= 40:
+                if now - self.last_mob_create_time >= timedelta(seconds=4): #mob time
+                    for i in range(random.randint(10, 20)):
+                        m = Mob(self.hub)
+                        if self.n == 30:
+                            m.hp += 500
+                        self.hub.add_mob(m)
+                        self.n+=10
+                    self.last_mob_create_time = datetime.now()
+                    self.schetcik += 1
+                    self.bosses()
+
+    def bosses(self):
+        if (self.schetcik % 3 == 0):
+            B = Boss(self.hub)
+            self.hub.add_boss(B)
 
     def hp_player(self):
         hp_text = self.font.render(f"HP: {self.hub.player.hp}", True, (255, 0, 0))

@@ -4,6 +4,7 @@ from config import Config
 # Настройки картинок
 PLAYER_LEFT_IMG = os.path.join(Config.img_folder, 'player_left.png')
 PLAYER_RIGHT_IMG = os.path.join(Config.img_folder, 'player_right.png')
+FON_MAIN_MENU = os.path.join(Config.img_folder, 'fon_main_menu.gif')
 
 # Настройки цветов
 BLACK = (0, 0, 0)
@@ -18,6 +19,13 @@ BUTTON_TEXT_COLOR = (31, 206, 203)
 
 GUNCOLOR = (0, 247, 255)
 BULLETCOLOR = (255, 255, 0)
-MOBCOLOR = (255, 0, 0)
-BLUE_MOBCOLOR = (0, 0, 100)
+RED_MOB_COLOR = (255, 0, 0)
+BLUE_MOB_COLOR = (0, 0, 100)
 BOSS_COLOR = (200, 50, 100)
+
+
+
+TILE_SIZE = 30  # Размер одного тайла
+GRID_WIDTH = Config.X_SCREEN * 4 // TILE_SIZE  # Ширина сетки в тайлах
+GRID_HEIGHT = Config.Y_SCREEN * 4 // TILE_SIZE  # Высота сетки в тайлах
+

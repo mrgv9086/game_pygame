@@ -11,6 +11,7 @@ class SpriteHub:
         self.walls = pygame.sprite.Group()
         self.bullets = pygame.sprite.Group()
         self.mobs = pygame.sprite.Group()
+        self.boss = pygame.sprite.Group()
 
         self.player = Player(self)
 
@@ -27,4 +28,8 @@ class SpriteHub:
 
     def add_mob(self, sprite):
         self.mobs.add(sprite)
+        self.all_sprites.add(sprite)
+
+    def add_boss(self, sprite):
+        self.boss.add(sprite)
         self.all_sprites.add(sprite)

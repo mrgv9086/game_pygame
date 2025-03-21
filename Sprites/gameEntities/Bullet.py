@@ -1,16 +1,16 @@
 import pygame
 import math
 
+from Sprites import EntitiesImages
 from Sprites.gameEntities.Mob import Mob
-from assets.assets import BULLETCOLOR
+
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y, direction, hub, damage):
         pygame.sprite.Sprite.__init__(self)
         self.damage = damage
         self.hub = hub
-        self.image = pygame.Surface((25, 10)).convert_alpha()
-        self.image.fill(BULLETCOLOR)
+        self.image = EntitiesImages.Images.bullet.convert_alpha()
         self.direction = direction
 
         self.angle = math.atan2(self.direction[0], self.direction[1])
@@ -26,9 +26,11 @@ class Bullet(pygame.sprite.Sprite):
 
         self.speed = 10
 
+        self.angle1 = math.cos(self.angle)
+        self.angle2 = math.sin(self.angle)
     def update(self):
-        self.pos_x += self.speed * math.cos(self.angle)
-        self.pos_y += self.speed * math.sin(self.angle)
+        self.pos_x += self.speed * self.angle1
+        self.pos_y += self.speed * self.angle2
 
         self.rect.centerx = self.pos_x
         self.rect.centery = self.pos_y

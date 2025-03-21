@@ -2,7 +2,7 @@ import pygame
 
 from Sprites.viewEntities.Button import Button
 from config import Config
-from assets.assets import GREEN, BUTTON_GRAY, BACKGROUND_GRAY
+from assets.assets import GREEN, BUTTON_GRAY, FON_MAIN_MENU
 
 
 class MainMenuScreen:
@@ -16,6 +16,7 @@ class MainMenuScreen:
         self.exit_button = Button(Config.X_SCREEN // 2 - 150, Config.Y_SCREEN // 2 + 250, 300, 50, "Выход", BUTTON_GRAY, GREEN)
         self.screen = screen
         self.scene_hub = scene_hub
+        self.main_fon = pygame.image.load(FON_MAIN_MENU).convert() #фон
 
     def update(self):
         self.play_button.update()
@@ -25,7 +26,8 @@ class MainMenuScreen:
         self.exit_button.update()
 
     def draw(self):
-        self.screen.fill(BACKGROUND_GRAY)
+        self.screen.blit(self.main_fon, (0, -49))
+
         self.play_button.draw(self.screen)
         self.settings_button.draw(self.screen)
         self.weapon_button.draw(self.screen)

@@ -12,11 +12,9 @@ clock.tick(Config.FPS)
 
 pygame.display.init()
 
-fon = pygame.mixer.Sound('assets/music/fon.mp3')
+Config.fon.set_volume(0.2)
 
-fon.set_volume(0.05)
-
-fon.play(3)
+Config.fon.play(3)
 
 scene_hub = SceneHub(screen)
 scene_hub.current_scene = "MainMenuScreen"

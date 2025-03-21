@@ -14,7 +14,7 @@ class GameScreen:
         self.settings_button = Button(Config.X_SCREEN // 2 - 540, Config.Y_SCREEN // 2 - 370, 50, 50, "☻", BUTTON_GRAY, GREEN)
         self.sprite_hub = SpriteHub()
 
-        walls = generate_walls()  # функция генерации стен
+        walls = generate_walls(self.sprite_hub.player)  # функция генерации стен
         for wall in walls:  # добавление сгенерированных стен в sprite_hub
             self.sprite_hub.add_wall(wall)
 

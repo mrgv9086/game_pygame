@@ -1,11 +1,9 @@
 import pygame  # Импортируем Pygame
 import time  # Импортируем модуль времени
 
-from DataBase import add_time
-from Sprites.gameEntities.Gun import Backshoot, Pistol, carabin  # Импортируем классы оружия
-from Sprites.viewEntities.Button import Button
+from Sprites.gameEntities.Gun import Shotgun, Pistol, carabin  # Импортируем классы оружия
 from config import Config  # Импортируем размеры экрана
-from assets.assets import PLAYER_LEFT_IMG, PLAYER_RIGHT_IMG, BACKGROUND_GRAY, GREEN, BUTTON_GRAY
+from assets.assets import PLAYER_LEFT_IMG, PLAYER_RIGHT_IMG
 from skills.Freeze import Freeze
 
 
@@ -30,8 +28,8 @@ class Player(pygame.sprite.Sprite):
         # Выбираем оружее
         if Config.current_gun == "pistol":
             self.current_gun = Pistol(50, self.hub)
-        elif Config.current_gun == "backshoot":
-            self.current_gun = Backshoot(50, 5, self.hub)
+        elif Config.current_gun == "shotgun":
+            self.current_gun = Shotgun(50, 5, self.hub)
         elif Config.current_gun == "carabin":
             self.current_gun = carabin(40, self.hub)
 
@@ -47,14 +45,9 @@ class Player(pygame.sprite.Sprite):
 
     def give_xp(self):
 
-        print(f"Player XP: {self.xp}")
-        print(f"Player LEVEL: {self.level}")
         if (self.xp >= 10):
             self.level += 1
             self.xp = 0
-
-
-
 
     def move_left(self):
         self.speed_x = -4
@@ -73,7 +66,7 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         tmp_x = self.rect.x
         tmp_y = self.rect.y
-        collide = True
+        collide = False
 
         self.rect.x += self.speed_x
         self.rect.y += self.speed_y
@@ -81,8 +74,7 @@ class Player(pygame.sprite.Sprite):
         if pygame.sprite.spritecollide(self, self.hub.walls, False):
             self.rect.x = tmp_x
             self.rect.y = tmp_y
-            collide = False
-
+            collide = True
 
         if self.rect.right > Config.X_SCREEN:
             self.rect.right = Config.X_SCREEN
