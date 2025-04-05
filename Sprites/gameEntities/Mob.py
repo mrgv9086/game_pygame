@@ -22,13 +22,24 @@ class Mob(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
 
         # ИЗМЕНЕНИЕ 1: Генерация начальной позиции так, чтобы моб не появлялся внутри стены
-        self.rect.x = random.randrange(Config.Y_SCREEN - self.rect.width)
-        self.rect.y = random.randrange(-100, -40)
+        self.rect.x = random.randrange(Config.X_SCREEN - self.rect.width)
+        self.rect.y = random.randrange(Config.X_SCREEN - self.rect.width)
+        if self.rect.y >= 20 and self.rect.y <= 700:
+            if self.rect.x >= 541:
+                self.rect.x = 1080
+            else:
+                self.rect.x = 0
+
 
         # Дополнительная проверка и коррекция позиции, чтобы не появлялся в стене
         while pygame.sprite.spritecollideany(self, self.hub.walls):
-            self.rect.x = random.randrange(Config.Y_SCREEN - self.rect.width)
-            self.rect.y = random.randrange(-100, -40)
+            self.rect.x = random.randrange(Config.X_SCREEN - self.rect.width)
+            self.rect.y = random.randrange(Config.X_SCREEN - self.rect.width)
+            if self.rect.y >= 20 and self.rect.y <= 700:
+                if self.rect.x >= 541:
+                    self.rect.x = 1080
+                else:
+                    self.rect.x = 0
 
         self.speed = random.randrange(1, 2)
         self.damage = 1
@@ -114,10 +125,6 @@ class Mob(pygame.sprite.Sprite):
         # Проверка столкновения с игроком
         if pygame.sprite.collide_mask(self, self.hub.player):
             self.hub.player.take_damage(self.damage)
-
-        # Удаление моба, если он выходит за границы экрана
-        if self.rect.top > 900 or self.rect.left < 0 or self.rect.right > 1700:
-            self.kill()
 
     def _handle_stuck_movement(self):
         """Обрабатывает движение, когда моб застрял."""

@@ -21,17 +21,20 @@ scene_hub.current_scene = "MainMenuScreen"
 
 # main
 run = True
-while run:
-    clock.tick(Config.FPS)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
+try:
+    while run:
+        clock.tick(Config.FPS)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
 
-        scene_hub.current_scene.event_handler(event)
+            scene_hub.current_scene.event_handler(event)
 
-    scene_hub.current_scene.draw()
-    scene_hub.current_scene.update()
+        scene_hub.current_scene.draw()
+        scene_hub.current_scene.update()
 
-    pygame.display.flip()
+        pygame.display.flip()
 
-pygame.quit()
+    pygame.quit()
+except Exception as e:
+    print(e)

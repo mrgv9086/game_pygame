@@ -67,6 +67,9 @@ class Updater:
                 for sprite in self.hub.mobs:
                     sprite.rect.x += self.offset_speed_x
                     sprite.rect.y += self.offset_speed_y
+                for sprite in self.hub.boss:
+                    sprite.rect.x += self.offset_speed_x
+                    sprite.rect.y += self.offset_speed_y
                 for sprite in self.hub.bullets:
                     sprite.pos_x += self.offset_speed_x
                     sprite.pos_y += self.offset_speed_y
