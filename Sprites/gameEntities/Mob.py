@@ -277,10 +277,6 @@ class Boss(pygame.sprite.Sprite):
         if pygame.sprite.collide_mask(self, self.hub.player):
             self.hub.player.take_damage(self.damage)
 
-        # Удаление босса, если он выходит за границы экрана
-        if self.rect.top > 900 or self.rect.left < 0 or self.rect.right > 1700:
-            self.kill()
-
     def _handle_stuck_movement(self):
         """Обрабатывает движение, когда моб застрял."""
         self.stuck_timer += 1
